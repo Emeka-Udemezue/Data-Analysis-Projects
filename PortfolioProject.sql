@@ -2,12 +2,8 @@ SELECT * FROM PortfolioProject.coviddeaths
 where continent is not null
 order by 3,4;
 
-SELECT LOCATION, POPULATION, MAX(TOTAL_CASES) AS HIGHESTINFECTIONCOUNT, MAX(total_cases/population)*100 AS 
-PERCENTPOPULATIONINFECTED
-FROM PortfolioProject.coviddeaths
-group by LOCATION, POPULATION
-ORDER BY PERCENTPOPULATIONINFECTED DESC;
 
+-- To get Highest Infection Count and group by Location, population and date
 SELECT LOCATION, POPULATION,date, MAX(TOTAL_CASES) AS HIGHESTINFECTIONCOUNT, MAX(total_cases/population)*100 AS 
 PERCENTPOPULATIONINFECTED
 FROM PortfolioProject.coviddeaths
@@ -16,7 +12,7 @@ ORDER BY PERCENTPOPULATIONINFECTED DESC;
 
 
 
-
+-- To get Total Deaths World-Wide 
 SELECT LOCATION, MAX(total_deaths) AS TOTAL_DEATH_COUNT
 FROM PortfolioProject.coviddeaths
 where continent is null
@@ -29,11 +25,13 @@ where continent is not null
 group by continent
 ORDER BY TOTAL_DEATH_COUNT DESC;
 
--- select location, MAX(total_deaths) AS TOTAL_DEATH_COUNT
--- from PortfolioProject.coviddeaths
--- where continent like '%africa%'
--- group by location
--- order by TOTAL_DEATH_COUNT;
+
+-- To get Total Deaths for a sepcific location in the case 'Africa'
+select location, MAX(total_deaths) AS TOTAL_DEATH_COUNT
+from PortfolioProject.coviddeaths
+where continent like '%africa%'
+group by location
+order by TOTAL_DEATH_COUNT;
 
 -- To get Total Covid Cases World-Wide 
 select sum(new_cases) as total_cases, sum(new_deaths) as total_deaths, sum(new_deaths)/sum(new_cases)*100 as DeathPercentage-- , total_deaths, (total_deaths/total_cases)*100 AS TOTAL_DEATH_PERCENTAGE
